@@ -68,7 +68,7 @@ async def message_editing(message, state, number_error=False, submit=False):
     )
 
 
-@dp.message_handler(commands=['start', 'help'])
+@dp.message_handler(commands=['start', 'help'], state="*")
 async def send_welcome(message: types.Message):
     """
     This handler will be called when user sends `/start` or `/help` command
@@ -139,7 +139,7 @@ async def back_to_main_page(callback: types.CallbackQuery):
     await api.get_report(callback.from_user.id)
 
 
-@dp.callback_query_handler(lambda call: call.data.startswith('lang'))
+@dp.callback_query_handler(lambda call: call.data.startswith('lang'), state="*")
 async def language_set(callback: types.CallbackQuery):
     lang = callback.data.split(":")[1]
     lang_text = "Русский"
