@@ -1,0 +1,129 @@
+# English translations for PROJECT.
+# Copyright (C) 2023 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2023-05-01 01:50+0600\n"
+"PO-Revision-Date: 2023-05-01 01:50+0600\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: keyboards.py:26
+msgid "На главную"
+msgstr ""
+
+#: keyboards.py:32 keyboards.py:41
+msgid "Отмена"
+msgstr ""
+
+#: keyboards.py:40
+msgid "Да"
+msgstr ""
+
+#: keyboards.py:59
+msgid "Доходы"
+msgstr ""
+
+#: keyboards.py:60
+msgid "Расходы"
+msgstr ""
+
+#: keyboards.py:61
+msgid "Изменение языка"
+msgstr ""
+
+#: keyboards.py:62
+msgid "Отчеты"
+msgstr ""
+
+#: main.py:42
+msgid ""
+"Вы выбрали *{category}*: \n"
+"{category_history}\n"
+msgstr ""
+
+#: main.py:47
+msgid "Введите описание: "
+msgstr ""
+
+#: main.py:49
+msgid "Ваше описание: *{description}* \n"
+msgstr ""
+
+#: main.py:51
+msgid "Введите значение: "
+msgstr ""
+
+#: main.py:57
+msgid "Введите только числовое значение: "
+msgstr ""
+
+#: main.py:60
+msgid "Ваше значение: *{value}* \n"
+msgstr ""
+
+#: main.py:78
+msgid "Здравствуйте, выберите язык"
+msgstr ""
+
+#: main.py:80
+msgid "Выберите раздел, пожалуйста"
+msgstr ""
+
+#: main.py:118
+msgid "Пожалуйста, выберите категорию"
+msgstr ""
+
+#: main.py:124
+msgid "Выберите язык"
+msgstr ""
+
+#: main.py:130
+msgid "Выберите раздел"
+msgstr ""
+
+#: main.py:141
+msgid "Выбран {language} язык"
+msgstr ""
+
+#: main.py:143
+msgid "Изменён язык. Выберите раздел"
+msgstr ""
+
+#: main.py:150
+msgid "Значение сохранено"
+msgstr ""
+
+#: main.py:157
+msgid "Отменено"
+msgstr ""
+
+#: main.py:164
+msgid "Хорошо! Попробуем еще раз."
+msgstr ""
+
+#: main.py:187
+msgid "Расход"
+msgstr ""
+
+#: main.py:187
+msgid "Доход"
+msgstr ""
+
+#: main.py:194
+msgid ""
+"Вы выбрали *{category}*: \n"
+"{category_history}\n"
+"Введите описание:"
+msgstr ""
+

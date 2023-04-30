@@ -1,0 +1,133 @@
+# Uzbek translations for PROJECT.
+# Copyright (C) 2023 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2023-05-01 01:50+0600\n"
+"PO-Revision-Date: 2023-05-01 01:50+0600\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: uz\n"
+"Language-Team: uz <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: keyboards.py:26
+msgid "На главную"
+msgstr "Bosh sahifa"
+
+#: keyboards.py:32 keyboards.py:41
+msgid "Отмена"
+msgstr "Bekor qilish"
+
+#: keyboards.py:40
+msgid "Да"
+msgstr "Ha"
+
+#: keyboards.py:59
+msgid "Доходы"
+msgstr "Kirim"
+
+#: keyboards.py:60
+msgid "Расходы"
+msgstr "Chiqim"
+
+#: keyboards.py:61
+msgid "Изменение языка"
+msgstr "Til o'zgarishi"
+
+#: keyboards.py:62
+msgid "Отчеты"
+msgstr "Xisobot"
+
+#: main.py:42
+msgid ""
+"Вы выбрали *{category}*: \n"
+"{category_history}\n"
+msgstr ""
+"Siz *{category}* ni tanladingiz: \n"
+"{category_history}\n"
+
+#: main.py:47
+msgid "Введите описание: "
+msgstr "Tavsif yozing: "
+
+#: main.py:49
+msgid "Ваше описание: *{description}* \n"
+msgstr "Sizning tavsifingiz: *{description}* \n"
+
+#: main.py:51
+msgid "Введите значение: "
+msgstr "Qiymatni yozing: "
+
+#: main.py:57
+msgid "Введите только числовое значение: "
+msgstr "Faqat raqamlar yozing: "
+
+#: main.py:60
+msgid "Ваше значение: *{value}* \n"
+msgstr "Yozilgan qiymat: *{value}* \n"
+
+#: main.py:78
+msgid "Здравствуйте, выберите язык"
+msgstr "Salom, tilni tanlang"
+
+#: main.py:80
+msgid "Выберите раздел, пожалуйста"
+msgstr "Iltimos, bo'limni tanlang"
+
+#: main.py:118
+msgid "Пожалуйста, выберите категорию"
+msgstr "Iltimos, kategoriya tanlang"
+
+#: main.py:124
+msgid "Выберите язык"
+msgstr "Tilni tanlang"
+
+#: main.py:130
+msgid "Выберите раздел"
+msgstr "Bo'limni tanlang"
+
+#: main.py:141
+msgid "Выбран {language} язык"
+msgstr "{language} tili tanlandi"
+
+#: main.py:143
+msgid "Изменён язык. Выберите раздел"
+msgstr "Til o'zgardi. Bo'limni tanlang"
+
+#: main.py:150
+msgid "Значение сохранено"
+msgstr "Qiymat saqlandi"
+
+#: main.py:157
+msgid "Отменено"
+msgstr "Bekor qilindi"
+
+#: main.py:164
+msgid "Хорошо! Попробуем еще раз."
+msgstr "Yaxshi! Boshidan urunib ko'ramiz."
+
+#: main.py:187
+msgid "Расход"
+msgstr "Chiqim"
+
+#: main.py:187
+msgid "Доход"
+msgstr "Kirim"
+
+#: main.py:194
+msgid ""
+"Вы выбрали *{category}*: \n"
+"{category_history}\n"
+"Введите описание:"
+msgstr ""
+"Siz *{category}* ni tanladingiz: \n"
+"{category_history}\n"
+"Tavsif yozing:"
