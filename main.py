@@ -40,25 +40,25 @@ async def message_editing(message, state, number_error=False, submit=False):
     description = data.get('description')  # dynamic
     value = data.get("value")  # dynamic
     number_error_smile = data.get("number_error_smile")
-    result_text = _("Вы выбрали *{category}*: \n{category_history}\n").format(
+    result_text = _("You have selected *{category}*: \n*{category_history}*\n").format(
         category=category, category_history=category_history)
 
     current_state = await state.get_state()
     if not description and current_state == "MyForm:description":
-        result_text += _("Введите описание: ")
+        result_text += _("Please enter a description:")
     else:
-        result_text += _("Ваше описание: *{description}* \n").format(description=description)
+        result_text += _("Your description is: *{description}* \n").format(description=description)
     if not value and current_state == "MyForm:value" and number_error is False:
-        result_text += _("Введите значение: ")
+        result_text += _("Please enter a value:")
     elif number_error:
         while True:
             random_smile = random.choice(random_smiles)
             if random_smile != number_error_smile:
                 break
-        result_text += random_smile + _("Введите только числовое значение: ")
+        result_text += random_smile + _("Please enter a numeric value only:")
         await state.update_data(number_error_smile=random_smile)
     else:
-        result_text += _("Ваше значение: *{value}* \n").format(value=str(value))
+        result_text += _("Your value is: *{value}*. \n").format(value=str(value))
     await bot.edit_message_text(
         text=result_text,
         message_id=msg_id,
@@ -76,9 +76,9 @@ async def send_welcome(message: types.Message):
     user_lang = await redis.get(message.from_user.id)
     is_standing_user = True if user_lang[2:] == FIRST_TIME_USER else False
     if is_standing_user:
-        await message.reply(_("Здравствуйте, выберите язык"), reply_markup=languages_keyboard_btn())
+        await message.reply(_("Hello, please select a language."), reply_markup=languages_keyboard_btn())
     else:
-        await message.answer(_("Выберите раздел, пожалуйста"),
+        await message.answer(_("Please select a section."),
                              reply_markup=main_reply_keyboards())
 
 
@@ -96,7 +96,7 @@ async def process_description2(message: types.Message, state: FSMContext):
 @dp.message_handler(lambda message: not message.text.isdigit(), state=MyForm.value)
 async def process_value_invalid(message: types.Message, state: FSMContext):
     """
-    If age is invalid
+    If value is invalid
     """
     return await message_editing(message, state, number_error=True)
 
@@ -129,11 +129,11 @@ async def submit_value(callback_query: types.CallbackQuery, state: FSMContext):
         "name": description
     }
     result = await api.post_request(category=category, data=json_data)
-    await callback_query.answer(_("Значение отправляется в базу"))
+    await callback_query.answer(_("The value is being sent to the database."))
     await state.finish()
     await callback_query.message.edit_reply_markup(reply_markup=None)
     if result:
-        await callback_query.message.answer(_("Данные сохранены в базе ✅"))
+        await callback_query.message.answer(_("The data has been saved in the database ✅."))
 
 
 @dp.callback_query_handler(lambda call: call.data in ("doxod", "rasxod"), state="*")
@@ -144,24 +144,24 @@ async def profit_or_outlay_handler(callback: types.CallbackQuery):
     category = "profit" if callback.data == "doxod" else "outlay"
     keyboard = await get_profit_kbs(callback.from_user.id, category=category,
                                     locale=locale)
-    await callback.message.edit_text(_("Пожалуйста, выберите категорию"), reply_markup=keyboard)
+    await callback.message.edit_text(_("Please choose a section."), reply_markup=keyboard)
 
 
 @dp.callback_query_handler(lambda call: call.data == "change_lang", state="*")
 async def change_lang_handler(callback: types.CallbackQuery):
     await callback.answer()
-    await callback.message.edit_text(_("Выберите язык"), reply_markup=languages_keyboard_btn())
+    await callback.message.edit_text(_("Please choose a language."), reply_markup=languages_keyboard_btn())
 
 
 @dp.callback_query_handler(lambda call: call.data == "main_page", state="*")
 async def back_to_main_page(callback: types.CallbackQuery):
     await callback.answer()
-    await callback.message.edit_text(_("Выберите раздел"), reply_markup=main_reply_keyboards())
+    await callback.message.edit_text(_("Please choose a section."), reply_markup=main_reply_keyboards())
 
 
 @dp.callback_query_handler(lambda call: call.data == "report", state="*")
 async def back_to_main_page(callback: types.CallbackQuery):
-    await callback.answer(_("Подождите"))
+    await callback.answer(_("Please wait."))
     await api.get_report(callback.from_user.id)
 
 
@@ -173,27 +173,27 @@ async def language_set(callback: types.CallbackQuery):
         lang_text = "O'zbek"
     elif lang == "en":
         lang_text = "English"
-    await callback.answer(_("Выбран {language} язык", locale=lang).format(language=lang_text))
+    await callback.answer(_("Selected {language} language.", locale=lang).format(language=lang_text))
     await redis.set(callback.from_user.id, lang + STANDING_USER)
-    await callback.message.edit_text(_("Изменён язык. Выберите раздел", locale=lang),
+    await callback.message.edit_text(_("Language has been changed. Please select a section.", locale=lang),
                                      reply_markup=lazy_main_button(locale=lang))
 
 
 @dp.callback_query_handler(text="cancel", state="*")
 async def submit_value_handler(callback: types.CallbackQuery, state: FSMContext):
-    await callback.answer(_("Отменено"))
+    await callback.answer(_("Cancelled"))
     current_state = await state.get_state()
     if current_state is None:
         return
     logging.info('Cancelling state %r', current_state)
     await callback.message.delete()
     await state.finish()
-    await callback.message.answer(_("Хорошо! Попробуем еще раз."), reply_markup=main_reply_keyboards())
+    await callback.message.answer(_("Okay! Let's try again."), reply_markup=main_reply_keyboards())
 
 
 @dp.message_handler(state="*")
 async def echo(message: types.Message):
-    await message.answer(_("Для пользования ботом напишите /start"))
+    await message.answer(_("To use the bot, please type /start"))
 
 
 @dp.callback_query_handler(state="*")
@@ -212,7 +212,7 @@ async def echo_handler(callback: types.CallbackQuery, state: FSMContext):
         category_history = " ".join(["*" + s + "*" for s in history_list])
     category_history += " *" + resp['name_' + locale] + "*"
 
-    category_type = _("Расход") if category == "outlay" else _("Доход")
+    category_type = _("Outlay") if category == "outlay" else _("Profit")
     await state.set_state(MyForm.category)
     await state.update_data(category=category_type)
     await state.update_data(category_id=pk)
@@ -221,7 +221,7 @@ async def echo_handler(callback: types.CallbackQuery, state: FSMContext):
     await state.update_data(msg_id=callback.message.message_id)
     await state.update_data(chat_id=callback.message.chat.id)
     await MyForm.description.set()
-    text = _("Вы выбрали *{category_type}*: \n{category_history}\nВведите описание:").format(
+    text = _("You selected *{category_type}*: \n{category_history}\nEnter a description::").format(
         category_type=category_type, category_history=category_history
     )
     await callback.message.edit_text(text,

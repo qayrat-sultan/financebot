@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-01 01:50+0600\n"
-"PO-Revision-Date: 2023-05-01 01:50+0600\n"
+"POT-Creation-Date: 2023-05-01 14:33+0600\n"
+"PO-Revision-Date: 2023-05-01 14:33+0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -19,112 +19,117 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: keyboards.py:26
-msgid "На главную"
-msgstr ""
+#: keyboards.py:32
+msgid "Main menu"
+msgstr "Главное меню"
 
-#: keyboards.py:32 keyboards.py:41
-msgid "Отмена"
-msgstr ""
+#: keyboards.py:38 keyboards.py:47
+msgid "Cancel"
+msgstr "Отменить"
 
-#: keyboards.py:40
-msgid "Да"
-msgstr ""
+#: keyboards.py:46
+msgid "Yes"
+msgstr "Да"
 
-#: keyboards.py:59
-msgid "Доходы"
-msgstr ""
+#: keyboards.py:65 keyboards.py:76 main.py:215
+msgid "Profit"
+msgstr "Доход"
 
-#: keyboards.py:60
-msgid "Расходы"
-msgstr ""
+#: keyboards.py:66 keyboards.py:77 main.py:215
+msgid "Outlay"
+msgstr "Расход"
 
-#: keyboards.py:61
-msgid "Изменение языка"
-msgstr ""
+#: keyboards.py:67 keyboards.py:78
+msgid "Change language"
+msgstr "Изменить язык"
 
-#: keyboards.py:62
-msgid "Отчеты"
-msgstr ""
+#: keyboards.py:68 keyboards.py:79
+msgid "Report"
+msgstr "Отчет"
 
-#: main.py:42
+#: main.py:43
 msgid ""
+"You have selected *{category}*: \n"
+"*{category_history}*\n"
+msgstr ""
 "Вы выбрали *{category}*: \n"
-"{category_history}\n"
-msgstr ""
+"*{category_history}*\n"
 
-#: main.py:47
-msgid "Введите описание: "
-msgstr ""
+#: main.py:48
+msgid "Please enter a description:"
+msgstr "Пожалуйста, введите описание:"
 
-#: main.py:49
-msgid "Ваше описание: *{description}* \n"
-msgstr ""
+#: main.py:50
+msgid "Your description is: *{description}* \n"
+msgstr "Ваше описание: *{description}* \n"
 
-#: main.py:51
-msgid "Введите значение: "
-msgstr ""
+#: main.py:52
+msgid "Please enter a value:"
+msgstr "Пожалуйста, введите значение:"
 
-#: main.py:57
-msgid "Введите только числовое значение: "
-msgstr ""
+#: main.py:58
+msgid "Please enter a numeric value only:"
+msgstr "Пожалуйста, введите только числовое значение:"
 
-#: main.py:60
-msgid "Ваше значение: *{value}* \n"
-msgstr ""
+#: main.py:61
+msgid "Your value is: *{value}*. \n"
+msgstr "Ваше значение: *{value}*. \n"
 
-#: main.py:78
-msgid "Здравствуйте, выберите язык"
-msgstr ""
+#: main.py:79
+msgid "Hello, please select a language."
+msgstr "Привет, пожалуйста, выберите язык."
 
-#: main.py:80
-msgid "Выберите раздел, пожалуйста"
-msgstr ""
+#: main.py:81
+msgid "Please select a section."
+msgstr "Пожалуйста, выберите раздел."
 
-#: main.py:118
-msgid "Пожалуйста, выберите категорию"
-msgstr ""
+#: main.py:132
+msgid "The value is being sent to the database."
+msgstr "Значение отправляется в базу данных."
 
-#: main.py:124
-msgid "Выберите язык"
-msgstr ""
+#: main.py:136
+msgid "The data has been saved in the database ✅."
+msgstr "Данные сохранены в базе данных ✅."
 
-#: main.py:130
-msgid "Выберите раздел"
-msgstr ""
+#: main.py:147 main.py:159
+msgid "Please choose a section."
+msgstr "Пожалуйста, выберите раздел."
 
-#: main.py:141
-msgid "Выбран {language} язык"
-msgstr ""
-
-#: main.py:143
-msgid "Изменён язык. Выберите раздел"
-msgstr ""
-
-#: main.py:150
-msgid "Значение сохранено"
-msgstr ""
-
-#: main.py:157
-msgid "Отменено"
-msgstr ""
+#: main.py:153
+msgid "Please choose a language."
+msgstr "Пожалуйста, выберите язык."
 
 #: main.py:164
-msgid "Хорошо! Попробуем еще раз."
-msgstr ""
+msgid "Please wait."
+msgstr "Пожалуйста, подождите."
 
-#: main.py:187
-msgid "Расход"
-msgstr ""
+#: main.py:176
+msgid "Selected {language} language."
+msgstr "Выбран язык {language}."
 
-#: main.py:187
-msgid "Доход"
-msgstr ""
+#: main.py:178
+msgid "Language has been changed. Please select a section."
+msgstr "Язык изменен. Пожалуйста, выберите раздел."
 
-#: main.py:194
+#: main.py:184
+msgid "Cancelled"
+msgstr "Отменено"
+
+#: main.py:191
+msgid "Okay! Let's try again."
+msgstr "Хорошо! Давайте попробуем снова."
+
+#: main.py:196
+msgid "To use the bot, please type /start"
+msgstr "Для использования бота введите /start"
+
+#: main.py:224
 msgid ""
-"Вы выбрали *{category}*: \n"
+"You selected *{category_type}*: \n"
 "{category_history}\n"
-"Введите описание:"
+"Enter a description::"
 msgstr ""
+"Вы выбрали *{category_type}*: \n"
+"{category_history}\n"
+"Введите описание::"
 

@@ -29,13 +29,13 @@ async def get_profit_kbs(
                 )
             )
         keyboard.add(*row_buttons)
-    keyboard.add(InlineKeyboardButton(_("На главную"), callback_data="main_page"))
+    keyboard.add(InlineKeyboardButton(_("Main menu"), callback_data="main_page"))
     return keyboard
 
 
 def only_cancel_btn():
     buttons = [
-        InlineKeyboardButton(text=_("Отмена"), callback_data="cancel")
+        InlineKeyboardButton(text=_("Cancel"), callback_data="cancel")
     ]
     keyboard = InlineKeyboardMarkup(row_width=2).add(*buttons)
     return keyboard
@@ -43,8 +43,8 @@ def only_cancel_btn():
 
 def submit_keyboard_btn():
     buttons = [
-        InlineKeyboardButton(text=_("Да"), callback_data="submit"),
-        InlineKeyboardButton(text=_("Отмена"), callback_data="cancel")
+        InlineKeyboardButton(text=_("Yes"), callback_data="submit"),
+        InlineKeyboardButton(text=_("Cancel"), callback_data="cancel")
     ]
     keyboard = InlineKeyboardMarkup(row_width=2).add(*buttons)
     return keyboard
@@ -62,10 +62,10 @@ def languages_keyboard_btn():
 
 def main_reply_keyboards():
     buttons = [
-        InlineKeyboardButton(text=_("Доходы"), callback_data="doxod"),
-        InlineKeyboardButton(text=_("Расходы"), callback_data="rasxod"),
-        InlineKeyboardButton(text=_("Изменение языка"), callback_data="change_lang"),
-        InlineKeyboardButton(text=_("Отчеты"), callback_data="report")
+        InlineKeyboardButton(text=_("Profit"), callback_data="doxod"),
+        InlineKeyboardButton(text=_("Outlay"), callback_data="rasxod"),
+        InlineKeyboardButton(text=_("Change language"), callback_data="change_lang"),
+        InlineKeyboardButton(text=_("Report"), callback_data="report")
     ]
     keyboard = InlineKeyboardMarkup(row_width=2).add(*buttons)
     return keyboard
@@ -73,10 +73,10 @@ def main_reply_keyboards():
 
 def lazy_main_button(locale):
     buttons = [
-        InlineKeyboardButton(text=_("Доходы", locale=locale), callback_data="doxod"),
-        InlineKeyboardButton(text=_("Расходы", locale=locale), callback_data="rasxod"),
-        InlineKeyboardButton(text=_("Изменение языка", locale=locale), callback_data="change_lang"),
-        InlineKeyboardButton(text=_("Отчеты", locale=locale), callback_data="report")
+        InlineKeyboardButton(text=_("Profit", locale=locale), callback_data="doxod"),
+        InlineKeyboardButton(text=_("Outlay", locale=locale), callback_data="rasxod"),
+        InlineKeyboardButton(text=_("Change language", locale=locale), callback_data="change_lang"),
+        InlineKeyboardButton(text=_("Report", locale=locale), callback_data="report")
     ]
     keyboard = InlineKeyboardMarkup(row_width=2).add(*buttons)
     return keyboard
