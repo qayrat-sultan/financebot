@@ -203,7 +203,7 @@ async def echo_handler(callback: types.CallbackQuery, state: FSMContext):
     locale = lang.split(":")[0]
     category, pk, is_final = callback.data.split("_")
     if is_final == "no":
-        keyboard = await get_profit_kbs(callback.from_user.id, parent_id=pk, is_final=False)
+        keyboard = await get_profit_kbs(callback.from_user.id, category=category, parent_id=pk, is_final=False)
         return await callback.message.edit_reply_markup(reply_markup=keyboard)
     resp = await api.get_history(pk, callback.from_user.id, category=category)
     category_history = resp["category_history"]["history_" + locale]
