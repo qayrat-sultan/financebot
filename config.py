@@ -13,6 +13,7 @@ DEBUG = env.bool("DEBUG", True)
 BOT_TOKEN = env.str("BOT_TOKEN")  # Bot toekn
 ADMINS = env.list("ADMINS", "19353535")  # adminlar ro'yxati
 API_URL = env("API_URL", "https://financeapi.itlink.uz/api/")
+MAIN_URL = env("MAIN_URL", "https://financeapi.itlink.uz/")
 API_TOKEN = env("API_TOKEN", None)
 
 I18N_DOMAIN = 'mybot'

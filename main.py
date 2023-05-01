@@ -7,7 +7,7 @@ from aiogram.dispatcher import FSMContext
 
 from api import api
 from config import BOT_TOKEN, redis
-from fsm_states import MyForm
+from fsm_states import MyForm, RegisterForm
 from keyboards import get_profit_kbs, only_cancel_btn, submit_keyboard_btn, languages_keyboard_btn, \
     main_reply_keyboards, lazy_main_button
 from locale_middleware import i18n, STANDING_USER, FIRST_TIME_USER
@@ -75,7 +75,7 @@ async def send_welcome(message: types.Message):
     This handler will be called when user sends `/start` or `/help` command
     """
     user_lang = await redis.get(message.from_user.id)
-    is_standing_user = True if user_lang[2:] == FIRST_TIME_USER else False
+    is_standing_user = True if user_lang[2:] != FIRST_TIME_USER else False
     if is_standing_user:
         await message.reply(_("Hello, please select a language."), reply_markup=languages_keyboard_btn())
     else:
@@ -91,6 +91,16 @@ async def process_description2(message: types.Message, state: FSMContext):
     await state.update_data(description=message.text)
     await MyForm.value.set()
     await message_editing(message, state)
+
+
+@dp.message_handler(state=RegisterForm.name)
+async def process_description2(message: types.Message, state: FSMContext):
+    """
+    Description
+    """
+    await state.finish()
+    await api.create_user_request({"tg_name": message.from_user.full_name, "tg_id": message.from_user.id})
+    await message.answer(_("Welcome to bot, please select section"), reply_markup=main_reply_keyboards())
 
 
 # Check age. Age gotta be digit
@@ -146,7 +156,6 @@ async def submit_value(callback_query: types.CallbackQuery, state: FSMContext):
 
 @dp.callback_query_handler(lambda call: call.data in ("doxod", "rasxod"), state="*")
 async def profit_or_outlay_handler(callback: types.CallbackQuery):
-    print("TUT")
     await callback.answer()
     lang = await redis.get(callback.from_user.id)
     locale = lang.split(":")[0]
@@ -184,8 +193,9 @@ async def language_set(callback: types.CallbackQuery):
         lang_text = "English"
     await callback.answer(_("Selected {language} language.", locale=lang).format(language=lang_text))
     await redis.set(callback.from_user.id, lang + STANDING_USER)
-    await callback.message.edit_text(_("Language has been changed. Please select a section.", locale=lang),
-                                     reply_markup=lazy_main_button(locale=lang))
+
+    await RegisterForm.name.set()
+    await callback.message.edit_text(_("Please write your name.", locale=lang))
 
 
 @dp.callback_query_handler(text="cancel", state="*")

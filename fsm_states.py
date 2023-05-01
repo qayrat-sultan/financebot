@@ -10,3 +10,7 @@ class MyForm(StatesGroup):
     description = State()
     value = State()
     msg_id = State()
+
+
+class RegisterForm(StatesGroup):
+    name = State()

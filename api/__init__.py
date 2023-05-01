@@ -2,7 +2,7 @@ import asyncio
 
 import aiohttp
 
-from config import API_URL, API_TOKEN
+from config import API_URL, API_TOKEN, MAIN_URL
 from exceptions import BackendError
 
 
@@ -10,6 +10,7 @@ class APIClient:
     def __init__(self):
         self.base_url = API_URL
         self.token = API_TOKEN
+        self.main_url = MAIN_URL
 
     async def fetch(self, url):
         async with aiohttp.ClientSession() as session:
@@ -21,9 +22,20 @@ class APIClient:
                     raise BackendError("Backend response status not provided 200")
 
     async def post_request(self, category: str, data: dict):
-        async with aiohttp.ClientSession() as session:
+        async with aiohttp.ClientSession() as session: # noqa
             headers = {"Authorization": f"Token {self.token}"}
             async with session.post(self.base_url + category + "/",
+                                    headers=headers,
+                                    json=data) as response:
+                if response.status == 201:
+                    return await response.json()
+                else:
+                    raise BackendError("Backend response status not provided 201")
+
+    async def create_user_request(self, data: dict):
+        async with aiohttp.ClientSession() as session: # noqa
+            headers = {"Authorization": f"Token {self.token}"}
+            async with session.post(self.main_url + "create-user/",
                                     headers=headers,
                                     json=data) as response:
                 if response.status == 201:
@@ -51,10 +63,9 @@ class APIClient:
         return resp
 
     async def get_report(self, user_id: int):
-        url = "https://financeapi.itlink.uz/"
-        await self.fetch(url + "send-report/?category=outlay&tg_id=" + str(user_id))
+        await self.fetch(self.main_url + "send-report/?category=outlay&tg_id=" + str(user_id))
         await asyncio.sleep(5)
-        await self.fetch(url + "send-report/?category=profit&tg_id=" + str(user_id))
+        await self.fetch(self.main_url + "send-report/?category=profit&tg_id=" + str(user_id))
 
 
 api = APIClient()
