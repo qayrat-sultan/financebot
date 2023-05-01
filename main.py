@@ -75,7 +75,7 @@ async def send_welcome(message: types.Message):
     This handler will be called when user sends `/start` or `/help` command
     """
     user_lang = await redis.get(message.from_user.id)
-    is_standing_user = True if user_lang[2:] != FIRST_TIME_USER else False
+    is_standing_user = True if user_lang[2:] == FIRST_TIME_USER else False
     if is_standing_user:
         await message.reply(_("Hello, please select a language."), reply_markup=languages_keyboard_btn())
     else:
