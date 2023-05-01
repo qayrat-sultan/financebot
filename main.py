@@ -146,6 +146,7 @@ async def submit_value(callback_query: types.CallbackQuery, state: FSMContext):
 
 @dp.callback_query_handler(lambda call: call.data in ("doxod", "rasxod"), state="*")
 async def profit_or_outlay_handler(callback: types.CallbackQuery):
+    print("TUT")
     await callback.answer()
     lang = await redis.get(callback.from_user.id)
     locale = lang.split(":")[0]
@@ -210,8 +211,14 @@ async def echo_handler(callback: types.CallbackQuery, state: FSMContext):
     lang = await redis.get(callback.from_user.id)
     locale = lang.split(":")[0]
     category, pk, is_final = callback.data.split("_")
+    print(category)
     if is_final == "no":
-        keyboard = await get_profit_kbs(callback.from_user.id, category=category, parent_id=pk, is_final=False)
+        keyboard = await get_profit_kbs(callback.from_user.id,
+                                        category=category,
+                                        parent_id=pk,
+                                        is_final=False,
+                                        locale=locale
+                                        )
         return await callback.message.edit_reply_markup(reply_markup=keyboard)
     resp = await api.get_history(pk, callback.from_user.id, category=category)
     category_history = resp["category_history"]["history_" + locale]
