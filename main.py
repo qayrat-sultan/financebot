@@ -205,7 +205,7 @@ async def echo_handler(callback: types.CallbackQuery, state: FSMContext):
     if is_final == "no":
         keyboard = await get_profit_kbs(callback.from_user.id, parent_id=pk, is_final=False)
         return await callback.message.edit_reply_markup(reply_markup=keyboard)
-    resp = await api.get_history(pk, callback.from_user.id)
+    resp = await api.get_history(pk, callback.from_user.id, category=category)
     category_history = resp["category_history"]["history_" + locale]
     if category_history:
         history_list = list(filter(lambda x: x.strip() != "", category_history.split(" > ")))
