@@ -23,7 +23,7 @@ async def get_profit_kbs(
             row_buttons.append(
                 InlineKeyboardButton(
                     resp_json_list[j]['name_' + locale],
-                    callback_data="profit_" +
+                    callback_data=category + "_" +
                                   str(resp_json_list[j]['id']) + is_final
 
                 )

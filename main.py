@@ -141,7 +141,8 @@ async def profit_or_outlay_handler(callback: types.CallbackQuery):
     await callback.answer()
     lang = await redis.get(callback.from_user.id)
     locale = lang.split(":")[0]
-    keyboard = await get_profit_kbs(callback.from_user.id, category="profit" if callback.data == "doxod" else "outlay",
+    category = "profit" if callback.data == "doxod" else "outlay"
+    keyboard = await get_profit_kbs(callback.from_user.id, category=category,
                                     locale=locale)
     await callback.message.edit_text(_("Пожалуйста, выберите категорию"), reply_markup=keyboard)
 
