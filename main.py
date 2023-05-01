@@ -111,48 +111,6 @@ async def process_value(message: types.Message, state: FSMContext):
 """ Callback Handlers """
 
 
-@dp.callback_query_handler(lambda call: call.data in ("doxod", "rasxod"))
-async def profit_or_outlay_handler(callback: types.CallbackQuery):
-    await callback.answer()
-    lang = await redis.get(callback.from_user.id)
-    locale = lang.split(":")[0]
-    keyboard = await get_profit_kbs(callback.from_user.id, category="profit" if callback.data == "doxod" else "outlay",
-                                    locale=locale)
-    await callback.message.edit_text(_("Пожалуйста, выберите категорию"), reply_markup=keyboard)
-
-
-@dp.callback_query_handler(lambda call: call.data == "change_lang")
-async def change_lang_handler(callback: types.CallbackQuery):
-    await callback.answer()
-    await callback.message.edit_text(_("Выберите язык"), reply_markup=languages_keyboard_btn())
-
-
-@dp.callback_query_handler(lambda call: call.data == "main_page")
-async def back_to_main_page(callback: types.CallbackQuery):
-    await callback.answer()
-    await callback.message.edit_text(_("Выберите раздел"), reply_markup=main_reply_keyboards())
-
-
-@dp.callback_query_handler(lambda call: call.data == "report")
-async def back_to_main_page(callback: types.CallbackQuery):
-    await callback.answer(_("Подождите"))
-    await api.get_report(callback.from_user.id)
-
-
-@dp.callback_query_handler(lambda call: call.data.startswith('lang'), state="*")
-async def language_set(callback: types.CallbackQuery):
-    lang = callback.data.split(":")[1]
-    lang_text = "Русский"
-    if lang == "uz":
-        lang_text = "O'zbek"
-    elif lang == "en":
-        lang_text = "English"
-    await callback.answer(_("Выбран {language} язык", locale=lang).format(language=lang_text))
-    await redis.set(callback.from_user.id, lang + STANDING_USER)
-    await callback.message.edit_text(_("Изменён язык. Выберите раздел", locale=lang),
-                                     reply_markup=lazy_main_button(locale=lang))
-
-
 @dp.callback_query_handler(text="submit", state=MyForm.value)
 async def submit_value(callback_query: types.CallbackQuery, state: FSMContext):
     # обработка отправки значения
@@ -176,6 +134,48 @@ async def submit_value(callback_query: types.CallbackQuery, state: FSMContext):
     await callback_query.message.edit_reply_markup(reply_markup=None)
     if result:
         await callback_query.message.answer(_("Данные сохранены в базе ✅"))
+
+
+@dp.callback_query_handler(lambda call: call.data in ("doxod", "rasxod"), state="*")
+async def profit_or_outlay_handler(callback: types.CallbackQuery):
+    await callback.answer()
+    lang = await redis.get(callback.from_user.id)
+    locale = lang.split(":")[0]
+    keyboard = await get_profit_kbs(callback.from_user.id, category="profit" if callback.data == "doxod" else "outlay",
+                                    locale=locale)
+    await callback.message.edit_text(_("Пожалуйста, выберите категорию"), reply_markup=keyboard)
+
+
+@dp.callback_query_handler(lambda call: call.data == "change_lang", state="*")
+async def change_lang_handler(callback: types.CallbackQuery):
+    await callback.answer()
+    await callback.message.edit_text(_("Выберите язык"), reply_markup=languages_keyboard_btn())
+
+
+@dp.callback_query_handler(lambda call: call.data == "main_page", state="*")
+async def back_to_main_page(callback: types.CallbackQuery):
+    await callback.answer()
+    await callback.message.edit_text(_("Выберите раздел"), reply_markup=main_reply_keyboards())
+
+
+@dp.callback_query_handler(lambda call: call.data == "report", state="*")
+async def back_to_main_page(callback: types.CallbackQuery):
+    await callback.answer(_("Подождите"))
+    await api.get_report(callback.from_user.id)
+
+
+@dp.callback_query_handler(lambda call: call.data.startswith('lang'), state="*")
+async def language_set(callback: types.CallbackQuery):
+    lang = callback.data.split(":")[1]
+    lang_text = "Русский"
+    if lang == "uz":
+        lang_text = "O'zbek"
+    elif lang == "en":
+        lang_text = "English"
+    await callback.answer(_("Выбран {language} язык", locale=lang).format(language=lang_text))
+    await redis.set(callback.from_user.id, lang + STANDING_USER)
+    await callback.message.edit_text(_("Изменён язык. Выберите раздел", locale=lang),
+                                     reply_markup=lazy_main_button(locale=lang))
 
 
 @dp.callback_query_handler(text="cancel", state="*")
