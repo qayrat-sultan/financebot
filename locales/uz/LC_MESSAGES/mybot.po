@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-01 14:49+0600\n"
+"POT-Creation-Date: 2023-05-01 16:12+0600\n"
 "PO-Revision-Date: 2023-05-01 14:33+0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: uz\n"
@@ -20,112 +20,121 @@ msgstr ""
 
 #: keyboards.py:32
 msgid "Main menu"
-msgstr ""
+msgstr "Asosiy menyu"
 
 #: keyboards.py:38 keyboards.py:47
 msgid "Cancel"
-msgstr ""
+msgstr "Bekor qilish"
 
 #: keyboards.py:46
 msgid "Yes"
-msgstr ""
+msgstr "Ha"
 
-#: keyboards.py:65 keyboards.py:76 main.py:215
+#: keyboards.py:65 keyboards.py:76 main.py:223
 msgid "Profit"
-msgstr ""
+msgstr "Foyda"
 
-#: keyboards.py:66 keyboards.py:77 main.py:215
+#: keyboards.py:66 keyboards.py:77 main.py:223
 msgid "Outlay"
-msgstr ""
+msgstr "Xarajat"
 
 #: keyboards.py:67 keyboards.py:78
 msgid "Change language"
-msgstr ""
+msgstr "Tilni o'zgartirish"
 
 #: keyboards.py:68 keyboards.py:79
 msgid "Report"
-msgstr ""
+msgstr "Hisobot"
 
-#: main.py:43
+#: main.py:44
+#, fuzzy
 msgid ""
 "You have selected *{category}*: \n"
-" *{category_history}* \n"
+" {category_history} \n"
 msgstr ""
+"Siz, *{category}* ni tanladingiz: \n"
+" {category_history} \n"
 
-#: main.py:48
+#: main.py:49
 msgid "Please enter a description:"
-msgstr ""
+msgstr "Tavsif kiriting"
 
-#: main.py:50
+#: main.py:51
 msgid "Your description is: *{description}* \n"
-msgstr ""
+msgstr "Siz yozgan tavsif: *{description}* \n"
 
-#: main.py:52
+#: main.py:53
 msgid "Please enter a value:"
-msgstr ""
+msgstr "Iltimos, summa kiriting"
 
-#: main.py:58
-msgid "Please enter a numeric value only:"
-msgstr ""
+#: main.py:59
+#, fuzzy
+msgid "Please enter valid amount, ex: *50 $*"
+msgstr "Iltimos, summa kiriting, m: *50 $*"
 
-#: main.py:61
-msgid "Your value is: *{value}* \n"
-msgstr ""
+#: main.py:62
+#, fuzzy
+msgid "Your value is: *{value}* {rate}\n"
+msgstr "Siz yozgan summa: *{value}* {rate}\n"
 
-#: main.py:79
+#: main.py:80
 msgid "Hello, please select a language."
-msgstr ""
+msgstr "Assalomu alaykum, tilni tanlang."
 
-#: main.py:81
+#: main.py:82
 msgid "Please select a section."
-msgstr ""
+msgstr "Iltimos, bo'limni tanlang."
 
-#: main.py:132
+#: main.py:140
 msgid "The value is being sent to the database."
-msgstr ""
+msgstr "Ma'lumotlaringiz jo'natilmoqda"
 
-#: main.py:136
+#: main.py:144
 msgid "The data has been saved in the database ✅."
-msgstr ""
+msgstr "Ma'lumotlaringiz saqlandi"
 
-#: main.py:147 main.py:159
+#: main.py:155 main.py:167
 msgid "Please choose a section."
-msgstr ""
+msgstr "Iltimos, bo'limni tanlang"
 
-#: main.py:153
+#: main.py:161
 msgid "Please choose a language."
-msgstr ""
+msgstr "Iltimos,kerakli tilni tanlang."
 
-#: main.py:164
+#: main.py:172
 msgid "Please wait."
-msgstr ""
-
-#: main.py:176
-msgid "Selected {language} language."
-msgstr ""
-
-#: main.py:178
-msgid "Language has been changed. Please select a section."
-msgstr ""
+msgstr "Iltimos kuting"
 
 #: main.py:184
+msgid "Selected {language} language."
+msgstr "Tilni tanlang"
+
+#: main.py:186
+msgid "Language has been changed. Please select a section."
+msgstr "Til muvaffaqiyatli o'zgartirildi. Iltimos, bo'limni tanlang"
+
+#: main.py:192
 msgid "Cancelled"
-msgstr ""
+msgstr "Bekor qilindi"
 
-#: main.py:191
+#: main.py:199
 msgid "Okay! Let's try again."
-msgstr ""
+msgstr "Xop! Keling, yana urinib ko'raylik"
 
-#: main.py:196
+#: main.py:204
 msgid "To use the bot, please type /start"
-msgstr ""
+msgstr "Botdan foydalanish uchun /start tugmasini bosing."
 
-#: main.py:224
+#: main.py:232
+#, fuzzy
 msgid ""
 "You selected *{category_type}*: \n"
 " *{category_history}* \n"
-"Enter a description::"
+"Enter a description:"
 msgstr ""
+"Siz *{category_type}* ni tanladingiz: \n"
+" *{category_history}* \n"
+"Tavsifni yozing:"
 
 #~ msgid ""
 #~ "You have selected *{category}*: \n"
@@ -140,4 +149,7 @@ msgstr ""
 #~ "{category_history}\n"
 #~ "Enter a description::"
 #~ msgstr ""
+
+#~ msgid "Please enter a numeric value only:"
+#~ msgstr "Iltimos faqat sonlar bilan yozing:"
 

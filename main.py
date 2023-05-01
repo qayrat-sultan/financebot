@@ -39,8 +39,9 @@ async def message_editing(message, state, number_error=False, submit=False):
     chat_id = data.get("chat_id")
     description = data.get('description')  # dynamic
     value = data.get("value")  # dynamic
+    rate = data.get("rate")  # dynamic
     number_error_smile = data.get("number_error_smile")
-    result_text = _("You have selected *{category}*: \n *{category_history}* \n").format(
+    result_text = _("You have selected *{category}*: \n {category_history} \n").format(
         category=category, category_history=category_history)
 
     current_state = await state.get_state()
@@ -55,10 +56,10 @@ async def message_editing(message, state, number_error=False, submit=False):
             random_smile = random.choice(random_smiles)
             if random_smile != number_error_smile:
                 break
-        result_text += random_smile + _("Please enter a numeric value only:")
+        result_text += random_smile + _("Please enter valid amount, ex: *50 $*")
         await state.update_data(number_error_smile=random_smile)
     else:
-        result_text += _("Your value is: *{value}* \n").format(value=str(value))
+        result_text += _("Your value is: *{value}* {rate}\n").format(value=str(value), rate=rate)
     await bot.edit_message_text(
         text=result_text,
         message_id=msg_id,
@@ -93,7 +94,7 @@ async def process_description2(message: types.Message, state: FSMContext):
 
 
 # Check age. Age gotta be digit
-@dp.message_handler(lambda message: not message.text.isdigit(), state=MyForm.value)
+@dp.message_handler(lambda message: not message.text.split(" ")[0].isdigit(), state=MyForm.value)
 async def process_value_invalid(message: types.Message, state: FSMContext):
     """
     If value is invalid
@@ -101,10 +102,16 @@ async def process_value_invalid(message: types.Message, state: FSMContext):
     return await message_editing(message, state, number_error=True)
 
 
-@dp.message_handler(lambda message: message.text.isdigit(), state=MyForm.value)
+@dp.message_handler(lambda message: message.text.split(" ")[0].isdigit(), state=MyForm.value)
 async def process_value(message: types.Message, state: FSMContext):
     # Update state and data
-    await state.update_data(value=int(message.text))
+    splitted_value = message.text.split(" ")
+    if len(splitted_value) > 1:
+        await state.update_data(value=int(splitted_value[0]))
+        await state.update_data(rate=splitted_value[1])
+    else:
+        await state.update_data(value=int(message.text))
+        await state.update_data(rate="UZS")
     await message_editing(message, state, submit=True)
 
 
@@ -126,7 +133,8 @@ async def submit_value(callback_query: types.CallbackQuery, state: FSMContext):
         "value": value,
         "tg_id": chat_id,
         "tg_name": callback_query.from_user.full_name,
-        "name": description
+        "name": description,
+        "rate": data.get("rate")
     }
     result = await api.post_request(category=category, data=json_data)
     await callback_query.answer(_("The value is being sent to the database."))
@@ -221,7 +229,7 @@ async def echo_handler(callback: types.CallbackQuery, state: FSMContext):
     await state.update_data(msg_id=callback.message.message_id)
     await state.update_data(chat_id=callback.message.chat.id)
     await MyForm.description.set()
-    text = _("You selected *{category_type}*: \n *{category_history}* \nEnter a description::").format(
+    text = _("You selected *{category_type}*: \n *{category_history}* \nEnter a description:").format(
         category_type=category_type, category_history=category_history
     )
     await callback.message.edit_text(text,
