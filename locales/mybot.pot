@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-01 14:33+0600\n"
+"POT-Creation-Date: 2023-05-01 14:49+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,7 +48,7 @@ msgstr ""
 #: main.py:43
 msgid ""
 "You have selected *{category}*: \n"
-"*{category_history}*\n"
+" *{category_history}* \n"
 msgstr ""
 
 #: main.py:48
@@ -68,7 +68,7 @@ msgid "Please enter a numeric value only:"
 msgstr ""
 
 #: main.py:61
-msgid "Your value is: *{value}*. \n"
+msgid "Your value is: *{value}* \n"
 msgstr ""
 
 #: main.py:79
@@ -122,7 +122,7 @@ msgstr ""
 #: main.py:224
 msgid ""
 "You selected *{category_type}*: \n"
-"{category_history}\n"
+" *{category_history}* \n"
 "Enter a description::"
 msgstr ""
 

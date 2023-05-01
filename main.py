@@ -40,7 +40,7 @@ async def message_editing(message, state, number_error=False, submit=False):
     description = data.get('description')  # dynamic
     value = data.get("value")  # dynamic
     number_error_smile = data.get("number_error_smile")
-    result_text = _("You have selected *{category}*: \n*{category_history}*\n").format(
+    result_text = _("You have selected *{category}*: \n *{category_history}* \n").format(
         category=category, category_history=category_history)
 
     current_state = await state.get_state()
@@ -58,7 +58,7 @@ async def message_editing(message, state, number_error=False, submit=False):
         result_text += random_smile + _("Please enter a numeric value only:")
         await state.update_data(number_error_smile=random_smile)
     else:
-        result_text += _("Your value is: *{value}*. \n").format(value=str(value))
+        result_text += _("Your value is: *{value}* \n").format(value=str(value))
     await bot.edit_message_text(
         text=result_text,
         message_id=msg_id,
@@ -221,7 +221,7 @@ async def echo_handler(callback: types.CallbackQuery, state: FSMContext):
     await state.update_data(msg_id=callback.message.message_id)
     await state.update_data(chat_id=callback.message.chat.id)
     await MyForm.description.set()
-    text = _("You selected *{category_type}*: \n{category_history}\nEnter a description::").format(
+    text = _("You selected *{category_type}*: \n *{category_history}* \nEnter a description::").format(
         category_type=category_type, category_history=category_history
     )
     await callback.message.edit_text(text,

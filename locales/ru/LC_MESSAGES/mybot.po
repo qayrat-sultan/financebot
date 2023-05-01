@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-01 14:33+0600\n"
+"POT-Creation-Date: 2023-05-01 14:49+0600\n"
 "PO-Revision-Date: 2023-05-01 14:33+0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -48,9 +48,10 @@ msgid "Report"
 msgstr "Отчет"
 
 #: main.py:43
+#, fuzzy
 msgid ""
 "You have selected *{category}*: \n"
-"*{category_history}*\n"
+" *{category_history}* \n"
 msgstr ""
 "Вы выбрали *{category}*: \n"
 "*{category_history}*\n"
@@ -72,7 +73,8 @@ msgid "Please enter a numeric value only:"
 msgstr "Пожалуйста, введите только числовое значение:"
 
 #: main.py:61
-msgid "Your value is: *{value}*. \n"
+#, fuzzy
+msgid "Your value is: *{value}* \n"
 msgstr "Ваше значение: *{value}*. \n"
 
 #: main.py:79
@@ -124,9 +126,10 @@ msgid "To use the bot, please type /start"
 msgstr "Для использования бота введите /start"
 
 #: main.py:224
+#, fuzzy
 msgid ""
 "You selected *{category_type}*: \n"
-"{category_history}\n"
+" *{category_history}* \n"
 "Enter a description::"
 msgstr ""
 "Вы выбрали *{category_type}*: \n"
