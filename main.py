@@ -218,7 +218,7 @@ async def submit_value_handler(callback: types.CallbackQuery, state: FSMContext)
 
 @dp.message_handler(state="*")
 async def echo(message: types.Message):
-    await message.answer(_("To use the bot, please type /start"))
+    await message.answer(_("To use the bot, please type /start"), reply_markup=None)
 
 
 @dp.callback_query_handler(state="*")
