@@ -9,7 +9,7 @@ from api import api
 from config import BOT_TOKEN, redis
 from fsm_states import MyForm, RegisterForm
 from keyboards import get_profit_kbs, only_cancel_btn, submit_keyboard_btn, languages_keyboard_btn, \
-    main_reply_keyboards, lazy_main_button
+    main_reply_keyboards
 from locale_middleware import i18n, STANDING_USER, FIRST_TIME_USER
 from setup import on_startup, on_shutdown
 
@@ -75,8 +75,8 @@ async def send_welcome(message: types.Message):
     This handler will be called when user sends `/start` or `/help` command
     """
     user_lang = await redis.get(message.from_user.id)
-    is_standing_user = True if user_lang[2:] == FIRST_TIME_USER else False
-    if is_standing_user:
+    is_first_time_user = True if user_lang[2:] == FIRST_TIME_USER else False
+    if is_first_time_user:
         await message.reply(_("Hello, please select a language."), reply_markup=languages_keyboard_btn())
     else:
         await message.answer(_("Please select a section."),
@@ -192,10 +192,16 @@ async def language_set(callback: types.CallbackQuery):
     elif lang == "en":
         lang_text = "English"
     await callback.answer(_("Selected {language} language.", locale=lang).format(language=lang_text))
-    await redis.set(callback.from_user.id, lang + STANDING_USER)
 
-    await RegisterForm.name.set()
-    await callback.message.edit_text(_("Please write your name.", locale=lang))
+    user_lang = await redis.get(callback.message.from_user.id)
+    is_first_time_user = True if user_lang and user_lang[2:] == FIRST_TIME_USER else False
+    await redis.set(callback.from_user.id, lang + STANDING_USER)
+    if is_first_time_user:
+        await RegisterForm.name.set()
+        await callback.message.edit_text(_("Please write your name.", locale=lang))
+    else:
+        await callback.message.edit_text(_("Please select a section.", locale=lang),
+                                         reply_markup=main_reply_keyboards(locale=lang))
 
 
 @dp.callback_query_handler(text="cancel", state="*")
@@ -221,7 +227,6 @@ async def echo_handler(callback: types.CallbackQuery, state: FSMContext):
     lang = await redis.get(callback.from_user.id)
     locale = lang.split(":")[0]
     category, pk, is_final = callback.data.split("_")
-    print(category)
     if is_final == "no":
         keyboard = await get_profit_kbs(callback.from_user.id,
                                         category=category,

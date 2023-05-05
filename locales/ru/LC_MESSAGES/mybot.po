@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-01 16:12+0600\n"
+"POT-Creation-Date: 2023-05-05 13:28+0600\n"
 "PO-Revision-Date: 2023-05-01 14:33+0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -31,11 +31,11 @@ msgstr "Отменить"
 msgid "Yes"
 msgstr "Да"
 
-#: keyboards.py:65 keyboards.py:76 main.py:223
+#: keyboards.py:65 keyboards.py:76 main.py:245
 msgid "Profit"
 msgstr "Доход"
 
-#: keyboards.py:66 keyboards.py:77 main.py:223
+#: keyboards.py:66 keyboards.py:77 main.py:245
 msgid "Outlay"
 msgstr "Расход"
 
@@ -82,51 +82,56 @@ msgstr "Ваше значение: *{value}* {rate}\n"
 msgid "Hello, please select a language."
 msgstr "Привет, пожалуйста, выберите язык."
 
-#: main.py:82
+#: main.py:82 main.py:203
 msgid "Please select a section."
 msgstr "Пожалуйста, выберите раздел."
 
-#: main.py:140
+#: main.py:103
+#, fuzzy
+msgid "Welcome to bot, please select section"
+msgstr "Пожалуйста, выберите раздел."
+
+#: main.py:150
 msgid "The value is being sent to the database."
 msgstr "Значение отправляется в базу данных."
 
-#: main.py:144
+#: main.py:154
 msgid "The data has been saved in the database ✅."
 msgstr "Данные сохранены в базе данных ✅."
 
-#: main.py:155 main.py:167
+#: main.py:165 main.py:177
 msgid "Please choose a section."
 msgstr "Пожалуйста, выберите раздел."
 
-#: main.py:161
+#: main.py:171
 msgid "Please choose a language."
 msgstr "Пожалуйста, выберите язык."
 
-#: main.py:172
+#: main.py:182
 msgid "Please wait."
 msgstr "Пожалуйста, подождите."
 
-#: main.py:184
+#: main.py:194
 msgid "Selected {language} language."
 msgstr "Выбран язык {language}."
 
-#: main.py:186
-msgid "Language has been changed. Please select a section."
-msgstr "Язык изменен. Пожалуйста, выберите раздел."
+#: main.py:201
+msgid "Please write your name."
+msgstr "Пожалуйста, напишите своё имя."
 
-#: main.py:192
+#: main.py:209
 msgid "Cancelled"
 msgstr "Отменено"
 
-#: main.py:199
+#: main.py:216
 msgid "Okay! Let's try again."
 msgstr "Хорошо! Давайте попробуем снова."
 
-#: main.py:204
+#: main.py:221
 msgid "To use the bot, please type /start"
 msgstr "Для использования бота введите /start"
 
-#: main.py:232
+#: main.py:254
 #, fuzzy
 msgid ""
 "You selected *{category_type}*: \n"
@@ -139,4 +144,7 @@ msgstr ""
 
 #~ msgid "Please enter a numeric value only:"
 #~ msgstr "Пожалуйста, введите только числовое значение:"
+
+#~ msgid "Language has been changed. Please select a section."
+#~ msgstr "Язык изменен. Пожалуйста, выберите раздел."
 

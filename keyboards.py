@@ -60,12 +60,12 @@ def languages_keyboard_btn():
     return keyboard
 
 
-def main_reply_keyboards():
+def main_reply_keyboards(locale=None):
     buttons = [
-        InlineKeyboardButton(text=_("Profit"), callback_data="doxod"),
-        InlineKeyboardButton(text=_("Outlay"), callback_data="rasxod"),
-        InlineKeyboardButton(text=_("Change language"), callback_data="change_lang"),
-        InlineKeyboardButton(text=_("Report"), callback_data="report")
+        InlineKeyboardButton(text=_("Profit", locale=locale), callback_data="doxod"),
+        InlineKeyboardButton(text=_("Outlay", locale=locale), callback_data="rasxod"),
+        InlineKeyboardButton(text=_("Change language", locale=locale), callback_data="change_lang"),
+        InlineKeyboardButton(text=_("Report", locale=locale), callback_data="report")
     ]
     keyboard = InlineKeyboardMarkup(row_width=2).add(*buttons)
     return keyboard
